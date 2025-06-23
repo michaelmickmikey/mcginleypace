@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>McGinley Xylophone</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="title">Yese can't hack the McGinley pace</div>
+      <div class="audio-player">
+        <p>Listen to the new single dropping Friday below!</p>
+        <img src="images/mcginley_photo.jpg" alt="McGinley" class="promo-img" />
+        <div class="controls">
+          <button onclick="playPromo()">▶️ Play</button>
+          <button onclick="pausePromo()">⏸️ Pause</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="xylophone">
+      <button class="key" onclick="playNextWord(0)" style="background-color: #00cfff;"></button>
+      <button class="key" onclick="playNextWord(1)" style="background-color: #ffef00;"></button>
+      <button class="key" onclick="playNextWord(2)" style="background-color: #00ff40;"></button>
+      <button class="key" onclick="playNextWord(3)" style="background-color: #ff00a7;"></button>
+      <button class="key" onclick="playNextWord(4)" style="background-color: #0033a0;"></button>
+      <button class="key" onclick="playNextWord(5)" style="background-color: #ff6c00;"></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
