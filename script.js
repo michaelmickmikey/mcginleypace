@@ -2,12 +2,24 @@ const words = ["yese", "cant", "hack", "the", "mcginley", "pace"];
 let currentIndex = 0;
 
 function playNextWord(keyIndex) {
-  const word = words[currentIndex];
-  const audio = new Audio(`sounds/${word}.mp3`);
-  audio.playbackRate = getPitchMultiplier(keyIndex);
-  audio.play();
-  currentIndex = (currentIndex + 1) % words.length;
-}
+    const word = words[currentIndex];
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    fetch(`sounds/${word}.mp3`)
+      .then(response => response.arrayBuffer())
+      .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+      .then(audioBuffer => {
+        const source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+  
+        // Pitch adjustment using playbackRate
+        source.playbackRate.value = getPitchMultiplier(keyIndex);
+  
+        source.connect(audioContext.destination);
+        source.start(0);
+      });
+  
+    currentIndex = (currentIndex + 1) % words.length;
+  }
 
 function getPitchMultiplier(keyIndex) {
   // Slight pitch changes per key
